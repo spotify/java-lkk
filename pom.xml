@@ -33,6 +33,13 @@
 				<version>3.8.1</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<dependency>
+			    <groupId>org.mockito</groupId>
+			    <artifactId>mockito-all</artifactId>
+			    <version>1.9.5-rc1</version>
+			    <scope>test</scope>
+			</dependency>
 		
 			<dependency>
 			    <groupId>org.apache.httpcomponents</groupId>
@@ -44,6 +51,12 @@
 			    <groupId>org.apache.httpcomponents</groupId>
 			    <artifactId>httpcomponents-client</artifactId>
 			    <version>${httpcomponents.version}</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>com.google.code.gson</groupId>
+			    <artifactId>gson</artifactId>
+			    <version>2.2.2</version>
 			</dependency>
 
 			<dependency>
