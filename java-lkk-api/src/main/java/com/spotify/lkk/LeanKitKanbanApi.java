@@ -5,5 +5,5 @@ import java.rmi.RemoteException;
 import com.spotify.lkk.types.LeanKitKanbanCard;
 
 public interface LeanKitKanbanApi {
-	void createCard(LeanKitKanbanCard card) throws RemoteException;
+	void createCard(String board, String lane, int position, LeanKitKanbanCard card) throws HttpDriverException;
 }
