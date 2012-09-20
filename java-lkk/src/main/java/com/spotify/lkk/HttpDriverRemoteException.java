@@ -9,6 +9,14 @@ public class HttpDriverRemoteException extends HttpDriverException {
         this.reason = reason;
     }
 
+    public int getCode() {
+		return code;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
     @Override
     public String toString() {
         return "HttpDriverRemoteException [" + code + ": " + reason + "]";
