@@ -13,7 +13,7 @@ public class Card {
     private int priority;
     private int size;
     private List<String> tags;
-    
+
     public String getType() {
         return type;
     }
@@ -31,14 +31,14 @@ public class Card {
     }
 
     public String getExternalCardId() {
-		return externalCardId;
-	}
+        return externalCardId;
+    }
 
-	public void setExternalCardId(String externalCardId) {
-		this.externalCardId = externalCardId;
-	}
+    public void setExternalCardId(String externalCardId) {
+        this.externalCardId = externalCardId;
+    }
 
-	public String getField() {
+    public String getField() {
         return field;
     }
 
@@ -54,43 +54,43 @@ public class Card {
         this.description = description;
     }
 
-	public String getExternalSystemName() {
-		return externalSystemName;
-	}
+    public String getExternalSystemName() {
+        return externalSystemName;
+    }
 
-	public void setExternalSystemName(String externalSystemName) {
-		this.externalSystemName = externalSystemName;
-	}
+    public void setExternalSystemName(String externalSystemName) {
+        this.externalSystemName = externalSystemName;
+    }
 
-	public String getExternalSystemUrl() {
-		return externalSystemUrl;
-	}
+    public String getExternalSystemUrl() {
+        return externalSystemUrl;
+    }
 
-	public void setExternalSystemUrl(String externalSystemUrl) {
-		this.externalSystemUrl = externalSystemUrl;
-	}
+    public void setExternalSystemUrl(String externalSystemUrl) {
+        this.externalSystemUrl = externalSystemUrl;
+    }
 
-	public int getPriority() {
-		return priority;
-	}
+    public int getPriority() {
+        return priority;
+    }
 
-	public void setPriority(int priority) {
-		this.priority = priority;
-	}
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
-	public int getSize() {
-		return size;
-	}
+    public int getSize() {
+        return size;
+    }
 
-	public void setSize(int size) {
-		this.size = size;
-	}
+    public void setSize(int size) {
+        this.size = size;
+    }
 
-	public List<String> getTags() {
-		return tags;
-	}
+    public List<String> getTags() {
+        return tags;
+    }
 
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
 }

@@ -2,9 +2,9 @@ package com.spotify.lkk;
 
 /**
  * An error happened that was indicated withing the API transport through an error response.
- * 
+ *
  * This should be distinguished from HTTP Errors which should have their own exception hierarchy.
- * 
+ *
  * @author udoprog
  */
 public class ApiRemoteException extends ApiException {
@@ -17,14 +17,14 @@ public class ApiRemoteException extends ApiException {
     }
 
     public int getCode() {
-		return code;
-	}
+        return code;
+    }
 
-	public String getReason() {
-		return reason;
-	}
+    public String getReason() {
+        return reason;
+    }
 
-	@Override
+    @Override
     public String toString() {
         return "ApiRemoteException [" + code + ": " + reason + "]";
     }

@@ -1,4 +1,4 @@
-package com.spotify.lkk;
+package com.spotify.lkk.http;
 
 public class HttpDriverException extends Exception {
     public HttpDriverException() {

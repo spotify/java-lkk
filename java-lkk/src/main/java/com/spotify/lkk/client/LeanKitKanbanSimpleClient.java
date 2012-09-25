@@ -25,7 +25,7 @@ public class LeanKitKanbanSimpleClient {
 
     /**
      * Update all board identifiers.
-     * 
+     *
      * @throws ApiException
      */
     public void update() throws ApiException {
@@ -53,7 +53,7 @@ public class LeanKitKanbanSimpleClient {
     }
 
     public LeanKitKanbanBoard getBoard(int boardId) throws ApiException {
-    	final Board board = api.getBoard(boardId);
+        final Board board = api.getBoard(boardId);
         return new LeanKitKanbanBoard(api, board);
     }
 }

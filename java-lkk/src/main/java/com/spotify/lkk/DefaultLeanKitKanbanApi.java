@@ -3,13 +3,12 @@ package com.spotify.lkk;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 
 import com.google.gson.reflect.TypeToken;
+import com.spotify.lkk.http.HttpDriver;
+import com.spotify.lkk.http.HttpDriverException;
+import com.spotify.lkk.http.HttpMethod;
 import com.spotify.lkk.types.AddCardRequest;
 import com.spotify.lkk.types.AddCardResponse;
 import com.spotify.lkk.types.Board;
@@ -25,20 +24,19 @@ public class DefaultLeanKitKanbanApi implements LeanKitKanbanApi {
     final public static String BOARDS_URI = "/Kanban/Api/Boards";
     final public static String BOARD_URI = "/Kanban/Api/Boards/%d";
 
-    public DefaultLeanKitKanbanApi(HttpDriver driver)
-    {        
+    public DefaultLeanKitKanbanApi(HttpDriver driver) {
         this.driver = driver;
     }
 
     @SuppressWarnings("unchecked")
-    private <T,R> List<T> execute(HttpUriRequest request, R entity, Type expected) throws ApiException {
-    	final ReplyData<T> reply;
-    	
-    	try {
-    		reply = (ReplyData<T>)this.driver.execute(request, entity, expected);
-	    } catch (HttpDriverException e) {
-	        throw new ApiException(e);
-	    }
+    private <T,R> List<T> execute(HttpMethod method, String uri, R entity, Type expected) throws ApiException {
+        final ReplyData<T> reply;
+
+        try {
+            reply = (ReplyData<T>)this.driver.execute(method, uri, entity, expected);
+        } catch (HttpDriverException e) {
+            throw new ApiException(e);
+        }
 
         if (reply.getReplyCode() / 100 != 2) {
             throw new ApiRemoteException(reply.getReplyCode(), reply.getReplyText());
@@ -48,13 +46,11 @@ public class DefaultLeanKitKanbanApi implements LeanKitKanbanApi {
     }
 
     private <T> List<T> get(String uri, Type expected) throws ApiException {
-        final HttpGet request = new HttpGet(uri);
-        return execute(request, null, expected);
+        return execute(HttpMethod.GET, uri, null, expected);
     }
 
     private <T, R> List<T> post(String uri, R entity, Type expected) throws ApiException {
-        final HttpPost request = new HttpPost(uri);
-        return execute(request, entity, expected);
+        return execute(HttpMethod.POST, uri, entity, expected);
     }
 
     @Override
@@ -91,23 +87,23 @@ public class DefaultLeanKitKanbanApi implements LeanKitKanbanApi {
         return get(uri, expected);
     }
 
-	@Override
-	public List<Board> getBoards() throws ApiException {
-		final String uri = BOARDS_URI;
+    @Override
+    public List<Board> getBoards() throws ApiException {
+        final String uri = BOARDS_URI;
         final Type expected = new TypeToken<ReplyData<Board>>() {}.getType();
         return get(uri, expected);
-	}
-	
-	@Override
-	public Board getBoard(int boardId) throws ApiException {
-		final String uri = String.format(BOARD_URI, boardId);
+    }
+
+    @Override
+    public Board getBoard(int boardId) throws ApiException {
+        final String uri = String.format(BOARD_URI, boardId);
         final Type expected = new TypeToken<ReplyData<Board>>() {}.getType();
         List<Board> boards = get(uri, expected);
-        
+
         if (boards.isEmpty()) {
-        	throw new ApiException("Could not find a board with id: " + boardId);
+            throw new ApiException("Could not find a board with id: " + boardId);
         }
-        
+
         return boards.get(0);
-	}
+    }
 }

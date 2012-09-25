@@ -24,7 +24,7 @@ public class LeanKitKanbanSimpleClient {
 
     /**
      * Update all board identifiers.
-     * 
+     *
      * @throws ApiException
      */
     public void update() throws ApiException {

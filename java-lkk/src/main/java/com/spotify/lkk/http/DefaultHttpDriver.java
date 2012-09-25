@@ -1,4 +1,4 @@
-package com.spotify.lkk;
+package com.spotify.lkk.http;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,6 +17,10 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.StringEntity;
@@ -38,7 +42,7 @@ public class DefaultHttpDriver implements HttpDriver {
 
     public DefaultHttpDriver(String host, int port, String username, String password) {
         this.targetHost = new HttpHost(host, port, port == 443 ? "https" : "http");
-        this.client = setupClient(username, password); 
+        this.client = setupClient(username, password);
         this.context = setupContext();
     }
 
@@ -115,7 +119,23 @@ public class DefaultHttpDriver implements HttpDriver {
         }
     }
 
-    public <R,T> T execute(HttpUriRequest request, R body, Type expected) throws HttpDriverException {
+    private HttpUriRequest setupUriRequest(HttpMethod method, String uri) {
+        switch (method) {
+        case GET:
+            return new HttpGet(uri);
+        case POST:
+            return new HttpPost(uri);
+        case HEAD:
+            return new HttpHead(uri);
+        case PUT:
+            return new HttpPut(uri);
+        }
+
+        return null;
+    }
+
+    public <R,T> T execute(HttpMethod method, String uri, R body, Type expected) throws HttpDriverException {
+        final HttpUriRequest request = setupUriRequest(method, uri);
         final HttpResponse response;
 
         request.addHeader("Accept", "application/json; */*;");
