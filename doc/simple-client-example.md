@@ -1,6 +1,6 @@
-Example Usage:
+Example Usage of LeanKitKanbanSimpleClient:
 
-    HttpDriver driver = new DefaultHttpDriver("<user>.leankitkanban.com", 443, "username", "password");
+    HttpDriver driver = new DefaultHttpDriver("<company>.leankitkanban.com", 443, "username", "password");
     DefaultLeanKitKanbanApi api = new DefaultLeanKitKanbanApi(driver);
 
     LeanKitKanbanSimpleClient client = new LeanKitKanbanSimpleClient(api);
