@@ -1,3 +1,4 @@
+# Copyright (c) 2013 Spotify AB
 package com.spotify.lkk.types;
 
 public class Board {
