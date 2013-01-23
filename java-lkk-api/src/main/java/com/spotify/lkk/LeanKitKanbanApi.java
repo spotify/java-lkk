@@ -1,4 +1,4 @@
-# Copyright (c) 2013 Spotify AB
+// Copyright (c) 2013 Spotify AB
 package com.spotify.lkk;
 
 import java.util.List;
